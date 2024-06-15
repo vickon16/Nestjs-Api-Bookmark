@@ -5,7 +5,7 @@ import { AuthDto } from './dto';
 @Controller('auth')
 export class AuthController {
   // rather than instantiating the authService directly, we inject it into the controller
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   // creating endpoints
   @Post('signup')

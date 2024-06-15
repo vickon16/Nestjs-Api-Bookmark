@@ -7,7 +7,12 @@ import { EditBookmarkDto } from './dto/edit-bookmark.dto';
 export class BookmarkService {
   constructor(private prisma: PrismaService) {}
 
-  async getBookmarks(userId: number) {
+  async getBookmarks(userId: number, active: boolean) {
+    if (active) {
+      return await this.prisma.bookmarks.findMany({
+        where: { userId, active },
+      });
+    }
     return await this.prisma.bookmarks.findMany({
       where: { userId },
     });

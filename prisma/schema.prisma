@@ -25,6 +25,7 @@ model bookmarks {
   title       String
   description String?
   link        String
+  active      Boolean  @default(false)
   userId      Int
   user        users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

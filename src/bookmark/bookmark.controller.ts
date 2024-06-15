@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { BookmarkService } from './bookmark.service';
@@ -20,11 +21,14 @@ import { GetUser } from 'src/auth/decorator';
 @UseGuards(JWTGuard)
 @Controller('bookmarks')
 export class BookmarkController {
-  constructor(private bookmarkService: BookmarkService) {}
+  constructor(private readonly bookmarkService: BookmarkService) {}
 
   @Get()
-  getBookmarks(@GetUser('id') userId: number) {
-    return this.bookmarkService.getBookmarks(userId);
+  getBookmarks(
+    @GetUser('id') userId: number,
+    @Query('active') active?: boolean,
+  ) {
+    return this.bookmarkService.getBookmarks(userId, active);
   }
 
   @Get(':id')

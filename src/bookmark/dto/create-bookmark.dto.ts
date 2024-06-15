@@ -12,4 +12,9 @@ export class CreateBookmarkDto {
   @IsString()
   @IsNotEmpty()
   link: string;
+
+  // @IsEnum(['Yes', 'No'], {
+  //   message: 'Must be either a yes or no',
+  // })
+  // book: 'Yes' | 'No';
 }
